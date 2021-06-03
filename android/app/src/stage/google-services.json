@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "145717358324",
+    "project_id": "epp-stage",
+    "storage_bucket": "epp-stage.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:145717358324:android:665222c28d7502b45a38a1",
+        "android_client_info": {
+          "package_name": "com.wa.wavetalks.stage"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "145717358324-spu86f9dribuliug42p5rb9l2q8up6mn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARIW6nDa38UeX4UBrkzj2ifab_U29tyq4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "145717358324-spu86f9dribuliug42p5rb9l2q8up6mn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:145717358324:android:665222c28d7502b45a38a1",
+        "android_client_info": {
+          "package_name": "com.wa.wavetalks.stage.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "145717358324-spu86f9dribuliug42p5rb9l2q8up6mn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARIW6nDa38UeX4UBrkzj2ifab_U29tyq4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "145717358324-spu86f9dribuliug42p5rb9l2q8up6mn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

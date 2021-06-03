@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "824059980771",
+    "project_id": "wavetalks-786e1",
+    "storage_bucket": "wavetalks-786e1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:824059980771:android:71074d73a58360c7c2ced6",
+        "android_client_info": {
+          "package_name": "com.wa.wavetalks.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "824059980771-hsqtmlqfq3k04l0h4nc91som98e0h9o7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBp8p-rdFWwWOmWZN3AfpTI1zyrJ6v2498"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "824059980771-hsqtmlqfq3k04l0h4nc91som98e0h9o7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:824059980771:android:02baf11ff8103803c2ced6",
+        "android_client_info": {
+          "package_name": "com.wa.wavetalks"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "824059980771-hsqtmlqfq3k04l0h4nc91som98e0h9o7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBp8p-rdFWwWOmWZN3AfpTI1zyrJ6v2498"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "824059980771-hsqtmlqfq3k04l0h4nc91som98e0h9o7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

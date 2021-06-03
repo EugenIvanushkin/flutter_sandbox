@@ -1,0 +1,90 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+xproj = "./Runner.xcodeproj"
+workspace = "./Runner.xcworkspace"
+appTarget = "Runner"
+defConfiguration = "Release"
+buildDir = "Build"
+buildName = "EppApp.ipa"
+firebase_cli_path = "/usr/local/bin/firebase"
+firebase_cli_token = "1//0cFhbSRLNtxRGCgYIARAAGAwSNwF-L9IrtYys6hv3ICWKgDI_BPywK8BWk-AU_5cZKry_CJ3-7bfvjkCiA0vqrjexU_Jo6i2UYBQ"
+firebase_app_id = "1:145717358324:ios:324bd48f59505f9b5a38a1"
+
+
+#=================================================
+
+lane :distributeFirebase do |options|
+    puts "Distribute Firebase"
+
+    firebase_app_distribution(
+        app: firebase_app_id,
+        groups: "ios-dev",
+        release_notes_file: "changelog.txt",
+        ipa_path: buildDir + "/" + buildName,
+        debug: true,
+        firebase_cli_path: firebase_cli_path,
+        firebase_cli_token: firebase_cli_token
+    )
+
+end
+
+#=================================================
+
+  lane :incrementBuild do  |options|
+    puts "Increment build"
+    increment_build_number(
+      build_number: options[:build],
+      xcodeproj: xproj
+    )
+
+  end
+
+#=================================================
+
+  lane :buildApp do |options|
+    puts "Build app"
+
+    gym(
+      workspace: workspace,
+      scheme: appTarget,
+      configuration: options[:build_configuration],
+      export_method: options[:export_method],
+      output_directory: buildDir,
+      output_name: buildName,
+      include_bitcode: false,
+      clean: true,
+      export_options: "fastlane/export.plist",
+      xcargs: "-allowProvisioningUpdates"
+    )
+  end
+
+#=================================================
+
+
+lane :build do |options|
+
+  configuration = defConfiguration
+  if options[:configuration]
+      configuration = options[:configuration]
+  end
+
+  export_method = "development"
+
+  puts "Build export method #{export_method}"
+  buildApp(export_method: export_method, build_configuration: configuration)
+
+end

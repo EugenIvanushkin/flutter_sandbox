@@ -1,0 +1,14 @@
+default_platform(:android)
+
+platform :android do
+  desc "Distribute stage apk to firebase"
+  lane :distributeStageRelease do |options|
+    buildNumber = options[:build]
+	firebase_app_distribution(
+        app: "1:145717358324:android:665222c28d7502b45a38a1",
+        groups: "qa",
+        firebase_cli_path: "/usr/local/bin/firebase",
+		apk_path: "../build/app/outputs/apk/stage/release/app-stage-release.apk"
+    )
+  end
+end

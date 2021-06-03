@@ -1,0 +1,120 @@
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file('local.properties')
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withReader('UTF-8') { reader ->
+        localProperties.load(reader)
+    }
+}
+
+def flutterRoot = localProperties.getProperty('flutter.sdk')
+if (flutterRoot == null) {
+    throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
+}
+
+def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
+if (flutterVersionCode == null) {
+    flutterVersionCode = '1'
+}
+
+def flutterVersionName = localProperties.getProperty('flutter.versionName')
+if (flutterVersionName == null) {
+    flutterVersionName = '1.0'
+}
+
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'io.fabric'
+apply plugin: 'com.google.firebase.appdistribution'
+
+android {
+    def bundleId = project.properties.projectId
+    final globalAlias = "epp"
+    final globalPass = "waveaccess123"
+    def major = project.properties.major
+    def minor = project.properties.minor
+    def buildProp = System.getenv("ORG_GRADLE_PROJECT_buildnum") ?: '1'
+    def buildNum = Integer.parseInt(buildProp)
+    def verName = "$major.$minor.$buildNum"
+
+    compileSdkVersion project.properties.sdkVersion
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
+    lintOptions {
+        disable 'InvalidPackage'
+    }
+
+    defaultConfig {
+        minSdkVersion project.properties.minSdkVersion
+        targetSdkVersion project.properties.sdkVersion
+        versionCode buildNum
+        versionName verName
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        stage {
+            storeFile file("${project.projectDir.absolutePath}/../epp_stage.jks")
+            storePassword = globalPass
+            keyAlias = globalAlias
+            keyPassword = globalPass
+        }
+        prod {
+            storeFile file("${project.projectDir.absolutePath}/../epp.jks")
+            storePassword = globalPass
+            keyAlias = globalAlias
+            keyPassword = globalPass
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            applicationIdSuffix = ".debug"
+            versionNameSuffix = "-debug"
+            signingConfig signingConfigs.debug
+        }
+        release {
+            // TODO proguard
+        }
+    }
+
+    flavorDimensions("mode")
+
+    productFlavors {
+        create("stage") {
+            dimension "mode"
+            applicationId "${bundleId}.stage"
+            versionNameSuffix = "-stage"
+            signingConfig signingConfigs.stage
+            firebaseAppDistribution {
+                groups="android-dev, qa"
+            }
+        }
+        create("prod") {
+            dimension "mode"
+            applicationId bundleId
+            signingConfig signingConfigs.prod
+        }
+    }
+}
+
+flutter {
+    source '../..'
+}
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'com.android.support:support-v4:28.1.0'
+    implementation 'com.google.android.material:material:1.0.0'
+}
