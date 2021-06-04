@@ -85,7 +85,7 @@ class NewsPageS extends BaseReduxPageState<NewsPage, NewsPageState, NewsVM> {
   Widget buildPage(BuildContext context, NewsVM viewModel) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(texts.titlePageNews),
+          title: Text("texts.titlePageNews"),
         ),
         body: RefreshIndicator(
           child: _buildList(context),

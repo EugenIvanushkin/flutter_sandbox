@@ -23,7 +23,6 @@ void main() async {
   getUriLinksStream().listen((Uri uri) {
     if (uri != null) navigateWithDeeplink(uri);
   }, onError: (err) {});
-  SharedPreferences.setMockInitialValues({});
 
   runApp(MyApp(store));
 }

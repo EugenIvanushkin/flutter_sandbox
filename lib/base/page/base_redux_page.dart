@@ -4,7 +4,6 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_sample/base/app/redux/action.dart';
 import 'package:flutter_sample/base/platform/platform.dart';
 import 'package:flutter_sample/base/utils/dispose.dart';
-import 'package:flutter_sample/l10n/app_localizations.dart';
 import 'package:redux/redux.dart';
 
 import 'base_page.dart';
@@ -16,7 +15,6 @@ abstract class BaseReduxPageState<Page extends BaseReduxPage, ReduxState, VM>
     with WidgetsBindingObserver, DisposableState, DisposeBag {
   Store<ReduxState> reduxStore;
   VM viewModel;
-  AppLocalizations texts;
 
   createStore();
 
@@ -79,7 +77,7 @@ abstract class BaseReduxPageState<Page extends BaseReduxPage, ReduxState, VM>
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          content: Text(message ?? texts.commonError),
+          content: Text(message ?? "title"),
           actions: [
             TextButton(
               child: Text('OK'),
@@ -98,15 +96,15 @@ abstract class BaseReduxPageState<Page extends BaseReduxPage, ReduxState, VM>
     return showDialog(
         context: context,
         builder: (context) => AlertDialog(
-              title: Text(texts.appSettingsAlertTitle),
-              content: Text(message ?? texts.appSettingsAlertMessage),
+              title: Text("texts.appSettingsAlertTitle"),
+              content: Text(message ?? "texts.appSettingsAlertMessage"),
               actions: [
                 TextButton(
-                  child: Text(texts.appSettingsAlertNo),
+                  child: Text("texts.appSettingsAlertNo"),
                   onPressed: () => Navigator.of(context).pop(),
                 ),
                 ElevatedButton(
-                  child: Text(texts.appSettingsAlertYes),
+                  child: Text("texts.appSettingsAlertYes"),
                   onPressed: () {
                     Navigator.of(context).pop();
                     openSecuritySettings();
@@ -117,6 +115,5 @@ abstract class BaseReduxPageState<Page extends BaseReduxPage, ReduxState, VM>
   }
 
   _updateLocalization(BuildContext context) {
-    texts = AppLocalizations.of(context ?? this.context);
   }
 }

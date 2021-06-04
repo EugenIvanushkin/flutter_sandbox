@@ -33,7 +33,7 @@ class DashboardPageS
   Widget buildPage(BuildContext context, DashboardVM viewModel) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(texts.titlePageDashboard),
+          title: Text("texts.titlePageDashboard"),
           actions: [
             FlatButton(
               onPressed: () => showLogoutDialog(),
@@ -52,7 +52,7 @@ class DashboardPageS
               children: [
                 ElevatedButton(
                     onPressed: () => Navigator.pushNamed(context, NEWS),
-                    child: Text(texts.titlePageNews))
+                    child: Text("texts.titlePageNews"))
               ],
             ),
           ),

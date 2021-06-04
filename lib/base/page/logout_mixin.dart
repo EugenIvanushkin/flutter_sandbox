@@ -9,11 +9,11 @@ mixin LogoutMixin<Page extends BaseReduxPage, ReduxState, VM>
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text(texts.logoutAlertTitle),
-        content: Text(texts.logoutAlertMessage),
+        title: Text("texts.logoutAlertTitle"),
+        content: Text("texts.logoutAlertMessage"),
         actions: [
           ElevatedButton(
-            child: Text(texts.logoutAlertNo),
+            child: Text("texts.logoutAlertNo"),
             onPressed: () => Navigator.of(context).pop(),
           ),
           TextButton(
@@ -23,7 +23,7 @@ mixin LogoutMixin<Page extends BaseReduxPage, ReduxState, VM>
               FlutterReduxApp.navigatorKey.currentState
                   .pushNamedAndRemoveUntil("/", (_) => false);
             },
-            child: Text(texts.logoutAlertYes),
+            child: Text("texts.logoutAlertYes"),
           ),
         ],
       ),

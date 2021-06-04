@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_sample/base/app/redux/action.dart';
-import 'package:flutter_sample/l10n/app_localizations.dart';
 import 'package:redux/redux.dart';
 import 'package:flutter_sample/base/app/redux/state.dart';
 
@@ -41,9 +40,7 @@ abstract class FlutterReduxApp extends StatelessWidget {
       ],
       // TODO add theme
       navigatorKey: navigatorKey,
-      routes: routes,
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
+      routes: routes
     );
   }
 
